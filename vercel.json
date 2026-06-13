@@ -1,8 +1,0 @@
-{
-  "name": "studiosilva-decoracoes",
-  "framework": "nextjs",
-  "git": {
-    "deploymentEnabled": true,
-    "silent": true
-  }
-}
