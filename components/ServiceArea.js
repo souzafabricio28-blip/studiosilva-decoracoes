@@ -17,7 +17,7 @@ export default function ServiceArea() {
           }}
         >
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233651.18026616745!2d-46.70796213883884!3d-23.68216040991315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce448183a461d1%3A0x9ba94b08ff335dae!2zU8OjbyBQYXVsbywgU1A!5e0!3m2!1spt-BR!2sbr!4v1"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14638.941179468793!2d-46.908560317135074!3d-23.53163816207895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf03c0e7a27e73%3A0x7b3d2abe4c0f9575!2zSmFuZGlyYSwgU1A!5e0!3m2!1spt-BR!2sbr!4v1"
             width="100%"
             height="400"
             style={{ border: 0, display: 'block' }}
@@ -47,10 +47,10 @@ export default function ServiceArea() {
                 color: 'var(--rose-primary)',
               }}
             >
-              São Paulo
+              Jandira
             </div>
             <div style={{ color: 'var(--text-soft)', fontSize: '0.9rem', marginTop: 4 }}>
-              Capital e Grande SP
+              Sede e atendimento presencial
             </div>
           </div>
           <div>
@@ -62,10 +62,10 @@ export default function ServiceArea() {
                 color: 'var(--rose-primary)',
               }}
             >
-              ABC
+              Região
             </div>
             <div style={{ color: 'var(--text-soft)', fontSize: '0.9rem', marginTop: 4 }}>
-              Santo André, São Bernardo,<br />São Caetano, Diadema
+              Barueri, Carapicuíba,<br />Osasco, Cotia, Santana de Parnaíba
             </div>
           </div>
           <div>
