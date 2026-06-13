@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 
 const categories = [
@@ -20,16 +20,24 @@ const galleryItems = Array.from({ length: 15 }, (_, i) => ({
   description: 'Decoração realizada pelo Studio Silva.',
 }));
 
-function GalleryModal({ item, onClose }) {
+function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
+  const handleKeyDown = useCallback((e) => {
+    if (e.key === 'Escape') onClose();
+    if (e.key === 'ArrowLeft') onPrev();
+    if (e.key === 'ArrowRight') onNext();
+  }, [onClose, onPrev, onNext]);
+
   useEffect(() => {
-    const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
-    window.addEventListener('keydown', handleKey);
+    window.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
     return () => {
-      window.removeEventListener('keydown', handleKey);
+      window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
-  }, [onClose]);
+  }, [handleKeyDown]);
+
+  const item = items[currentIndex];
+  if (!item) return null;
 
   return (
     <div
@@ -37,7 +45,7 @@ function GalleryModal({ item, onClose }) {
       style={{
         position: 'fixed',
         top: 0, left: 0, right: 0, bottom: 0,
-        background: 'rgba(0,0,0,0.8)',
+        background: 'rgba(0,0,0,0.85)',
         zIndex: 2000,
         display: 'flex',
         alignItems: 'center',
@@ -46,6 +54,34 @@ function GalleryModal({ item, onClose }) {
         cursor: 'pointer',
       }}
     >
+      <button
+        onClick={(e) => { e.stopPropagation(); onPrev(); }}
+        style={{
+          position: 'absolute',
+          left: 24,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          width: 48,
+          height: 48,
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.15)',
+          border: 'none',
+          color: 'white',
+          fontSize: '1.5rem',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.2s',
+          opacity: currentIndex === 0 ? 0.3 : 1,
+        }}
+        onMouseEnter={(e) => { e.target.style.background = 'rgba(255,255,255,0.3)'; }}
+        onMouseLeave={(e) => { e.target.style.background = 'rgba(255,255,255,0.15)'; }}
+        aria-label="Anterior"
+      >
+        ←
+      </button>
+
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
@@ -55,6 +91,7 @@ function GalleryModal({ item, onClose }) {
           borderRadius: 'var(--radius)',
           overflow: 'hidden',
           animation: 'fadeInUp 0.3s ease',
+          position: 'relative',
         }}
       >
         <div
@@ -71,7 +108,7 @@ function GalleryModal({ item, onClose }) {
             alt={item.title}
             fill
             sizes="(max-width: 768px) 100vw, 700px"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'contain' }}
           />
           <button
             onClick={onClose}
@@ -95,34 +132,62 @@ function GalleryModal({ item, onClose }) {
             ✕
           </button>
         </div>
-        <div style={{ padding: 24 }}>
-          <h3
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: '1.4rem',
-              color: 'var(--text-dark)',
-              marginBottom: 8,
-            }}
-          >
-            {item.title}
-          </h3>
-          <p style={{ color: 'var(--text-soft)', fontSize: '0.95rem' }}>
-            {item.description}
-          </p>
+        <div style={{ padding: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.2rem', color: 'var(--text-dark)', marginBottom: 4 }}>
+              {item.title}
+            </h3>
+            <p style={{ color: 'var(--text-soft)', fontSize: '0.9rem' }}>
+              {item.description}
+            </p>
+          </div>
+          <div style={{ color: 'var(--text-soft)', fontSize: '0.85rem', whiteSpace: 'nowrap' }}>
+            {currentIndex + 1} / {items.length}
+          </div>
         </div>
       </div>
+
+      <button
+        onClick={(e) => { e.stopPropagation(); onNext(); }}
+        style={{
+          position: 'absolute',
+          right: 24,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          width: 48,
+          height: 48,
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.15)',
+          border: 'none',
+          color: 'white',
+          fontSize: '1.5rem',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.2s',
+          opacity: currentIndex === items.length - 1 ? 0.3 : 1,
+        }}
+        onMouseEnter={(e) => { e.target.style.background = 'rgba(255,255,255,0.3)'; }}
+        onMouseLeave={(e) => { e.target.style.background = 'rgba(255,255,255,0.15)'; }}
+        aria-label="Próximo"
+      >
+        →
+      </button>
     </div>
   );
 }
 
 export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
   const filtered = activeCategory === 'all'
     ? galleryItems
     : galleryItems.filter(item => item.category === activeCategory);
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const prev = () => setLightboxIndex((prev) => (prev === 0 ? filtered.length - 1 : prev - 1));
+  const next = () => setLightboxIndex((prev) => (prev === filtered.length - 1 ? 0 : prev + 1));
 
   return (
     <section id="gallery" className="section" style={{ background: 'var(--cream)' }}>
@@ -144,7 +209,7 @@ export default function Gallery() {
           {categories.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
+              onClick={() => { setActiveCategory(cat.id); setLightboxIndex(null); }}
               style={{
                 padding: '10px 24px',
                 borderRadius: 50,
@@ -172,10 +237,10 @@ export default function Gallery() {
           }}
           className="gallery-grid"
         >
-          {filtered.map((item) => (
+          {filtered.map((item, idx) => (
             <div
               key={item.id}
-              onClick={() => setSelectedItem(item)}
+              onClick={() => setLightboxIndex(idx)}
               style={{
                 borderRadius: 'var(--radius)',
                 overflow: 'hidden',
@@ -214,8 +279,14 @@ export default function Gallery() {
         </div>
       </div>
 
-      {selectedItem && (
-        <GalleryModal item={selectedItem} onClose={() => setSelectedItem(null)} />
+      {lightboxIndex !== null && (
+        <GalleryModal
+          items={filtered}
+          currentIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onPrev={prev}
+          onNext={next}
+        />
       )}
 
       <style jsx>{`
