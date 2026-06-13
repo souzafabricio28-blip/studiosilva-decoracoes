@@ -4,6 +4,7 @@ import Services from '@/components/Services';
 import Scheduling from '@/components/Scheduling';
 import Gallery from '@/components/Gallery';
 import FAQ from '@/components/FAQ';
+import ServiceArea from '@/components/ServiceArea';
 import Contact from '@/components/Contact';
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Scheduling />
       <Gallery />
       <FAQ />
+      <ServiceArea />
       <Contact />
     </>
   );

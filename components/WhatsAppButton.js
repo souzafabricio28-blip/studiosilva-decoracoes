@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+const WHATSAPP_MSG = 'Olá! Vi o site e quero um orçamento.';
+
 export default function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
 
@@ -8,9 +10,11 @@ export default function WhatsAppButton() {
     return () => clearTimeout(timer);
   }, []);
 
+  const url = `https://wa.me/5511960855115?text=${encodeURIComponent(WHATSAPP_MSG)}`;
+
   return (
     <a
-      href="https://wa.me/5511960855115"
+      href={url}
       target="_blank"
       rel="noopener noreferrer"
       style={{

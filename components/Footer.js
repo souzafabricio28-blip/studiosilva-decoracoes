@@ -75,7 +75,7 @@ export default function Footer() {
               {[
                 { label: 'Instagram', href: 'https://instagram.com' },
                 { label: 'Facebook', href: 'https://facebook.com' },
-                { label: 'WhatsApp', href: 'https://wa.me/5511960855115' },
+                { label: 'WhatsApp', href: 'https://wa.me/5511960855115?text=Olá! Vi o site e quero um orçamento.' },
                 { label: 'Pinterest', href: 'https://pinterest.com' },
               ].map((social) => (
                 <a

@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'Agendar', href: '#scheduling' },
   { label: 'Galeria', href: '#gallery' },
   { label: 'FAQ', href: '#faq' },
+  { label: 'Região', href: '#service-area' },
   { label: 'Contato', href: '#contact' },
 ];
 

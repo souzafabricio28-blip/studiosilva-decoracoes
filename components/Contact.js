@@ -166,7 +166,7 @@ export default function Contact() {
                     WhatsApp
                   </div>
                   <a
-                    href="                    https://wa.me/5511960855115"
+                    href="https://wa.me/5511960855115?text=Olá! Vi o site e quero um orçamento."
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ color: 'var(--rose-primary)', fontSize: '0.95rem' }}
