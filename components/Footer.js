@@ -40,17 +40,27 @@ export default function Footer() {
               Navegação
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {['Início', 'Sobre', 'Serviços', 'Galeria', 'Depoimentos', 'Contato'].map((item) => (
+              {['Início', 'Sobre', 'Serviços', 'Galeria', 'Depoimentos', 'Contato'].map((item) => {
+                const hrefs = {
+                  'Início': '#hero',
+                  'Sobre': '#about',
+                  'Serviços': '#services',
+                  'Galeria': '#gallery',
+                  'Depoimentos': '#testimonials',
+                  'Contato': '#contact',
+                };
+                return (
                 <a
                   key={item}
-                  href={`#${item === 'Início' ? 'hero' : item.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
+                  href={hrefs[item]}
                   style={{ color: 'rgba(255,248,245,0.6)', fontSize: '0.9rem', transition: 'color 0.2s' }}
                   onMouseEnter={(e) => { e.target.style.color = 'var(--rose-secondary)'; }}
                   onMouseLeave={(e) => { e.target.style.color = 'rgba(255,248,245,0.6)'; }}
                 >
                   {item}
                 </a>
-              ))}
+                );
+              })}
             </div>
           </div>
 

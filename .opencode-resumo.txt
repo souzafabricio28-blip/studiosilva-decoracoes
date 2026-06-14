@@ -1,0 +1,30 @@
+=== RESUMO DA CONVERSA - Studio Silva Decorações ===
+Data: 13/06/2026
+
+SITE:
+- Next.js 14.2.29
+- Paleta: rosa + cinza rosado (#F3ECEF / #EBE2E7)
+- Hospedado em: https://studiosilva-decoracoes.vercel.app
+- GitHub: https://github.com/souzafabricio28-blip/studiosilva-decoracoes
+- Deploy automático via GitHub Actions (push na master)
+
+SEÇÕES IMPLANTADAS:
+1. Hero - "A vida é mais feliz com festa! 🎉"
+2. Sobre - com foto
+3. Serviços - Kits (Luxo R$300, Ouro R$200, Bronze R$160, Prata R$130) + Avulsos
+4. Agendamento Online - calendário + horários, envia WhatsApp
+5. Galeria - 15 fotos, lightbox com setas (← →) e teclado
+6. FAQ - 8 perguntas frequentes em accordion
+7. Região de Atendimento - Mapa Google, Jandira e região
+8. Contato - formulário envia WhatsApp
+9. WhatsApp flutuante - com msg pré-definida
+10. Botão Voltar ao topo
+
+CONTATO:
+- WhatsApp: (11) 96085-5115 (com msg "Olá! Vi o site e quero um orçamento.")
+- Instagram: @studiosilva
+
+PENDENTE:
+- Link do Instagram real
+- Depoimentos com fotos (quando tiver)
+- Domínio próprio
