@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: 'var(--text-dark)',
+        background: '#461620',
         color: 'var(--cream)',
         padding: '60px 0 30px',
       }}
@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', marginBottom: 16, color: 'var(--cream)' }}>
+            <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', marginBottom: 16, color: 'var(--rose-secondary)' }}>
               Navegação
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -55,7 +55,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', marginBottom: 16, color: 'var(--cream)' }}>
+            <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', marginBottom: 16, color: 'var(--rose-secondary)' }}>
               Serviços
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -68,7 +68,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', marginBottom: 16, color: 'var(--cream)' }}>
+            <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', marginBottom: 16, color: 'var(--rose-secondary)' }}>
               Redes Sociais
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>

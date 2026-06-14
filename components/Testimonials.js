@@ -74,7 +74,7 @@ export default function Testimonials() {
         >
           <div
             style={{
-              background: 'var(--white)',
+              background: 'var(--bg-light)',
               borderRadius: 'var(--radius)',
               padding: '48px 40px',
               textAlign: 'center',

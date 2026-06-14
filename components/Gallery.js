@@ -219,7 +219,7 @@ export default function Gallery() {
                 fontWeight: 500,
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
-                background: activeCategory === cat.id ? 'var(--rose-primary)' : 'var(--white)',
+                  background: activeCategory === cat.id ? 'var(--rose-primary)' : 'var(--bg-light)',
                 color: activeCategory === cat.id ? 'var(--white)' : 'var(--text-soft)',
                 boxShadow: activeCategory === cat.id ? 'none' : 'var(--shadow)',
               }}

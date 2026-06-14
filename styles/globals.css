@@ -4,13 +4,14 @@
   --rose-primary: #D45C7A;
   --rose-secondary: #F4A4B8;
   --rose-light: #FDE8EF;
-  --cream: #F3ECEF;
-  --cream-dark: #EBE2E7;
-  --text-dark: #3D1F25;
-  --text-soft: #7A5A60;
+  --cream: #111111;
+  --cream-dark: #0A0A0A;
+  --text-dark: #F0F0F0;
+  --text-soft: #AAAAAA;
   --accent-gold: #C4956A;
   --accent-gold-light: #E8D5B7;
   --white: #FFFFFF;
+  --bg-light: #1A1A1A;
   --shadow: 0 4px 20px rgba(212, 92, 122, 0.12);
   --shadow-hover: 0 8px 30px rgba(212, 92, 122, 0.2);
   --radius: 12px;

@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function About() {
   return (
-    <section id="about" className="section" style={{ background: 'var(--white)' }}>
+    <section id="about" className="section" style={{ background: 'var(--bg-light)' }}>
       <div className="container">
         <h2 className="section-title">Sobre Nós</h2>
         <p className="section-subtitle">

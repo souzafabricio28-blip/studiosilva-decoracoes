@@ -9,27 +9,6 @@ export default function ServiceArea() {
 
         <div
           style={{
-            maxWidth: 800,
-            margin: '0 auto',
-            borderRadius: 'var(--radius)',
-            overflow: 'hidden',
-            boxShadow: 'var(--shadow)',
-          }}
-        >
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14638.941179468793!2d-46.908560317135074!3d-23.53163816207895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf03c0e7a27e73%3A0x7b3d2abe4c0f9575!2zSmFuZGlyYSwgU1A!5e0!3m2!1spt-BR!2sbr!4v1"
-            width="100%"
-            height="400"
-            style={{ border: 0, display: 'block' }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Região de atendimento Studio Silva"
-          />
-        </div>
-
-        <div
-          style={{
             display: 'flex',
             justifyContent: 'center',
             gap: 40,

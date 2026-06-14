@@ -56,7 +56,7 @@ export default function Scheduling() {
   };
 
   return (
-    <section id="scheduling" className="section" style={{ background: 'var(--white)' }}>
+    <section id="scheduling" className="section" style={{ background: 'var(--bg-light)' }}>
       <div className="container">
         <h2 className="section-title">Agende seu Orçamento</h2>
         <p className="section-subtitle">

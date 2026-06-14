@@ -80,7 +80,7 @@ export default function Services() {
               style={{
                 background: kit.highlight
                   ? 'linear-gradient(135deg, var(--rose-primary), var(--rose-secondary))'
-                  : 'var(--white)',
+                  : 'var(--bg-light)',
                 borderRadius: 'var(--radius)',
                 padding: '36px 24px',
                 textAlign: 'center',
@@ -203,7 +203,7 @@ export default function Services() {
             <div
               key={index}
               style={{
-                background: 'var(--white)',
+                background: 'var(--bg-light)',
                 borderRadius: 'var(--radius)',
                 padding: '32px 20px',
                 textAlign: 'center',

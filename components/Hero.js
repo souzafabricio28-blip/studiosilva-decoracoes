@@ -8,7 +8,7 @@ export default function Hero() {
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        background: 'linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 50%, var(--rose-light) 100%)',
+        background: 'linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 50%, var(--bg-light) 100%)',
         overflow: 'hidden',
       }}
     >

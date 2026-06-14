@@ -43,7 +43,7 @@ function AccordionItem({ faq, isOpen, onClick }) {
         borderRadius: 'var(--radius)',
         overflow: 'hidden',
         transition: 'all 0.3s ease',
-        background: isOpen ? 'var(--white)' : 'transparent',
+                    background: isOpen ? 'var(--bg-light)' : 'transparent',
       }}
     >
       <button

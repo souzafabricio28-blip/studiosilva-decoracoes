@@ -39,7 +39,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section" style={{ background: 'var(--white)' }}>
+    <section id="contact" className="section" style={{ background: 'var(--bg-light)' }}>
       <div className="container">
         <h2 className="section-title">Entre em Contato</h2>
         <p className="section-subtitle">
