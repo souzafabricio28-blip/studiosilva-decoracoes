@@ -8,15 +8,19 @@ const categories = [
   { id: 'decoracoes', label: 'Decorações' },
 ];
 
-const galleryItems = Array.from({ length: 15 }, (_, i) => ({
+const kitNames = ['Luxo', 'Ouro', 'Bronze', 'Prata', 'Especial', 'Premium'];
+const balloonNames = ['Simples', 'Espiral', 'Desconstruído', 'Encapsulado', 'Colorido', 'Arco 2m', 'Arranjo', 'Personalizado'];
+const decorNames = ['Infantil', 'Casamento', '15 Anos', 'Temática', 'Especial', 'Chá de Lingerie', 'Chá de Bebê', 'Aniversário', 'Formatura', 'Corporativo', 'Luxo', 'Personalizada'];
+
+const galleryItems = Array.from({ length: 26 }, (_, i) => ({
   id: i + 1,
   image: `/images/gallery-${i + 1}.jpg`,
-  category: i < 5 ? 'kits' : i < 10 ? 'baloes' : 'decoracoes',
-  title: i < 5
-    ? `Kit ${['Luxo', 'Ouro', 'Bronze', 'Prata', 'Especial'][i]}`
-    : i < 10
-    ? `Balões ${['Simples', 'Espiral', 'Desconstruído', 'Encapsulado', 'Colorido'][i - 5]}`
-    : `Decoração ${['Infantil', 'Casamento', '15 Anos', 'Temática', 'Especial'][i - 10]}`,
+  category: i < 6 ? 'kits' : i < 14 ? 'baloes' : 'decoracoes',
+  title: i < 6
+    ? `Kit ${kitNames[i]}`
+    : i < 14
+    ? `Balões ${balloonNames[i - 6]}`
+    : `Decoração ${decorNames[i - 14]}`,
   description: 'Decoração realizada pelo Studio Silva.',
 }));
 

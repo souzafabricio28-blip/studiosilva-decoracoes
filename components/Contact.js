@@ -43,7 +43,7 @@ export default function Contact() {
       <div className="container">
         <h2 className="section-title">Entre em Contato</h2>
         <p className="section-subtitle">
-          Solicite seu orçamento ou tire suas dvidas. Estamos prontos para transformar seu evento em algo inesquecível!
+          Solicite seu orçamento ou tire suas dúvidas. Estamos prontos para transformar seu evento em algo inesquecível!
         </p>
 
         <div
@@ -100,43 +100,12 @@ export default function Contact() {
                     Instagram
                   </div>
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/silva.decoracoees"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ color: 'var(--rose-primary)', fontSize: '0.95rem' }}
                   >
-                    @studiosilva
-                  </a>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                <div
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: '50%',
-                    background: 'var(--rose-light)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                  }}
-                >
-                  <svg width="22" height="22" viewBox="0 0 22 22" fill="var(--rose-primary)">
-                    <path d="M3 5C3 3.89543 3.89543 3 5 3H17C18.1046 3 19 3.89543 19 5V17C19 18.1046 18.1046 19 17 19H5C3.89543 19 3 18.1046 3 17V5Z" />
-                    <path d="M3 7L11 12L19 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <div>
-                  <div style={{ fontWeight: 600, color: 'var(--text-dark)', marginBottom: 4 }}>
-                    Email
-                  </div>
-                  <a
-                    href="mailto:contato@studiosilva.com"
-                    style={{ color: 'var(--rose-primary)', fontSize: '0.95rem' }}
-                  >
-                    contato@studiosilva.com
+                    @silva.decoracoees
                   </a>
                 </div>
               </div>
@@ -175,6 +144,36 @@ export default function Contact() {
                   </a>
                 </div>
               </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div
+                  style={{
+                    width: 48,
+                    height: 48,
+                    borderRadius: '50%',
+                    background: 'var(--rose-light)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="var(--rose-primary)">
+                    <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" />
+                  </svg>
+                </div>
+                <div>
+                  <div style={{ fontWeight: 600, color: 'var(--text-dark)', marginBottom: 4 }}>
+                    Email
+                  </div>
+                  <a
+                    href="mailto:studiosilvadecoracao@gmail.com"
+                    style={{ color: 'var(--rose-primary)', fontSize: '0.95rem' }}
+                  >
+                    studiosilvadecoracao@gmail.com
+                  </a>
+                </div>
+              </div>
             </div>
 
             <div
@@ -187,9 +186,7 @@ export default function Contact() {
               <p style={{ color: 'var(--text-soft)', fontSize: '0.9rem', lineHeight: 1.7 }}>
                 <strong style={{ color: 'var(--text-dark)' }}>Horário de atendimento:</strong>
                 <br />
-                Seg a Sex: 8h s 18h
-                <br />
-                Sbado: 9h s 14h
+                24 horas por dia, 7 dias por semana
               </p>
             </div>
           </div>

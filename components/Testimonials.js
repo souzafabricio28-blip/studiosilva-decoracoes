@@ -2,39 +2,9 @@ import { useState } from 'react';
 
 const testimonials = [
   {
-    name: 'Ana Carolina Silva',
-    role: 'Festa de 15 anos',
-    text: 'A Erika transformou o sonho da minha fila em realidade! A festa ficou simplesmente mágica, cada detalhe foi pensado com muito carinho. Super recomendo!',
-    rating: 5,
-  },
-  {
-    name: 'Maria Eduarda Santos',
-    role: 'Casamento',
-    text: 'Meu casamento foi perfeito graas ao trabalho da Erika. A decoração estava além do que imaginei. Todos os convidados elogiaram muito!',
-    rating: 5,
-  },
-  {
-    name: 'Pedro Henrique Oliveira',
-    role: 'Festa Infantil',
-    text: 'Fizemos a festa de 3 anos do nosso filho com tema de super-hóis. A Erika foi incrvel, a decoração ficou linda e a criança amou!',
-    rating: 5,
-  },
-  {
-    name: 'Juliana Costa',
-    role: 'Evento Corporativo',
-    text: 'Profissionalismo e criatividade andam juntos. A Erika fez um trabalho excepcional na nossa confraternizao de fim de ano.',
-    rating: 5,
-  },
-  {
-    name: 'Fernanda Lima',
-    role: 'Festa de 15 anos',
-    text: 'A festa dos meus sonhos! A Erika entendeu exatamente o que eu queria e superou todas as expectativas. Uma profissional incrivel!',
-    rating: 5,
-  },
-  {
-    name: 'Ricardo Alves',
-    role: 'Casamento',
-    text: 'Contratamos a Erika para o casamento do meu filho e foi a melhor deciso. Tudo impecável, do início ao fim. Nota 10!',
+    name: 'Andrea',
+    role: 'Cliente',
+    text: 'Passado para indicar o trabalho maravilhoso, tudo perfeito gratidão.',
     rating: 5,
   },
 ];

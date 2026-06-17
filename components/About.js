@@ -82,36 +82,7 @@ export default function About() {
               Venha realizar sua festa conosco!
             </p>
 
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: 24,
-              }}
-            >
-              {[
-                { number: '500+', label: 'Festas Realizadas' },
-                { number: '8+', label: 'Anos de Experiência' },
-                { number: '300+', label: 'Clientes Satisfeitos' },
-                { number: '50+', label: 'Temas Diferentes' },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div
-                    style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontSize: '2rem',
-                      fontWeight: 700,
-                      color: 'var(--rose-primary)',
-                    }}
-                  >
-                    {stat.number}
-                  </div>
-                  <div style={{ color: 'var(--text-soft)', fontSize: '0.9rem' }}>
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+
           </div>
         </div>
       </div>

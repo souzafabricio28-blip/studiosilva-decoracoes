@@ -69,7 +69,7 @@ export default function Footer() {
               Serviços
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {['Kit Luxo', 'Kit Ouro', 'Kit Bronze', 'Kit Prata', 'Balões em Geral'].map((item) => (
+              {['Mini Festa na Mesa', 'Pegue e Monte', 'Arco de Balão 2m', 'Arranjo de Balões', 'Convite Personalizado'].map((item) => (
                 <span key={item} style={{ color: 'rgba(255,248,245,0.6)', fontSize: '0.9rem' }}>
                   {item}
                 </span>
@@ -83,10 +83,9 @@ export default function Footer() {
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {[
-                { label: 'Instagram', href: 'https://instagram.com' },
-                { label: 'Facebook', href: 'https://facebook.com' },
+                { label: 'Instagram', href: 'https://www.instagram.com/silva.decoracoees' },
                 { label: 'WhatsApp', href: 'https://wa.me/5511960855115?text=Olá! Vi o site e quero um orçamento.' },
-                { label: 'Pinterest', href: 'https://pinterest.com' },
+                { label: 'Email', href: 'mailto:studiosilvadecoracao@gmail.com' },
               ].map((social) => (
                 <a
                   key={social.label}
@@ -121,6 +120,8 @@ export default function Footer() {
           </p>
           <p style={{ color: 'rgba(255,248,245,0.5)', fontSize: '0.85rem' }}>
             Feito com <span style={{ color: 'var(--rose-secondary)' }}>♥</span> para você
+            <br />
+            <a href="/admin" style={{ color: 'rgba(255,248,245,0.3)', fontSize: '0.75rem', textDecoration: 'none' }}>Admin</a>
           </p>
         </div>
       </div>
