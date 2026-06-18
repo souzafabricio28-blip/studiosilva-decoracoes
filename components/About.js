@@ -28,7 +28,7 @@ export default function About() {
             }}
           >
             <Image
-              src="/images/gallery-1.jpg"
+              src="/images/about.jpg"
               alt="Studio Silva Decorações"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
