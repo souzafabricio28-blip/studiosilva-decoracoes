@@ -27,7 +27,7 @@ export default function About() {
             <img
               src="/images/about.jpg"
               alt="Studio Silva Decorações"
-              style={{ width: '100%', display: 'block' }}
+              loading="lazy" style={{ width: '100%', display: 'block' }}
             />
           </div>
 

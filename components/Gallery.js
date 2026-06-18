@@ -90,6 +90,7 @@ export default function Gallery() {
               <img
                 src={item.image}
                 alt={item.title}
+                loading="lazy"
                 style={{ width: '100%', display: 'block' }}
               />
             </div>
