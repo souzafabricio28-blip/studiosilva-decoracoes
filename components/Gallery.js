@@ -47,13 +47,12 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
       onClick={onClose}
       style={{
         position: 'fixed',
-        top: 0, left: 0, right: 0, bottom: 0,
-        background: 'rgba(0,0,0,0.85)',
+        inset: 0,
+        background: 'rgba(0,0,0,0.9)',
         zIndex: 2000,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 24,
         cursor: 'pointer',
       }}
     >
@@ -61,13 +60,13 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
         style={{
           position: 'absolute',
-          left: 24,
+          left: 16,
           top: '50%',
           transform: 'translateY(-50%)',
           width: 48,
           height: 48,
           borderRadius: '50%',
-          background: 'rgba(255,255,255,0.15)',
+          background: 'rgba(255,255,255,0.2)',
           border: 'none',
           color: 'white',
           fontSize: '1.5rem',
@@ -75,11 +74,9 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          transition: 'all 0.2s',
+          zIndex: 1,
           opacity: currentIndex === 0 ? 0.3 : 1,
         }}
-        onMouseEnter={(e) => { e.target.style.background = 'rgba(255,255,255,0.3)'; }}
-        onMouseLeave={(e) => { e.target.style.background = 'rgba(255,255,255,0.15)'; }}
         aria-label="Anterior"
       >
         ←
@@ -88,35 +85,33 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          maxWidth: 700,
-          width: '100%',
-          background: 'var(--white)',
-          borderRadius: 'var(--radius)',
-          overflow: 'hidden',
-          animation: 'fadeInUp 0.3s ease',
-          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          maxHeight: '90vh',
+          maxWidth: '90vw',
         }}
       >
-        <div
-          style={{
-            width: '100%',
-            aspectRatio: '4/3',
-            background: 'var(--cream-dark)',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-              <img
-                src={item.image}
-                alt={item.title}
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
+        <div style={{ position: 'relative', maxHeight: '85vh', maxWidth: '90vw' }}>
+          <img
+            src={item.image}
+            alt={item.title}
+            style={{
+              display: 'block',
+              maxWidth: '90vw',
+              maxHeight: '85vh',
+              objectFit: 'contain',
+              borderRadius: 8,
+            }}
+            onError={(e) => { e.target.style.display = 'none'; }}
+          />
           <button
             onClick={onClose}
             style={{
               position: 'absolute',
-              top: 12,
-              right: 12,
+              top: 8,
+              right: 8,
               width: 36,
               height: 36,
               borderRadius: '50%',
@@ -133,18 +128,13 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
             ✕
           </button>
         </div>
-        <div style={{ padding: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.2rem', color: 'var(--text-dark)', marginBottom: 4 }}>
-              {item.title}
-            </h3>
-            <p style={{ color: 'var(--text-soft)', fontSize: '0.9rem' }}>
-              {item.description}
-            </p>
-          </div>
-          <div style={{ color: 'var(--text-soft)', fontSize: '0.85rem', whiteSpace: 'nowrap' }}>
+        <div style={{ padding: '12px 0', textAlign: 'center' }}>
+          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', color: 'white', marginBottom: 4 }}>
+            {item.title}
+          </h3>
+          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem' }}>
             {currentIndex + 1} / {items.length}
-          </div>
+          </p>
         </div>
       </div>
 
@@ -152,13 +142,13 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
         onClick={(e) => { e.stopPropagation(); onNext(); }}
         style={{
           position: 'absolute',
-          right: 24,
+          right: 16,
           top: '50%',
           transform: 'translateY(-50%)',
           width: 48,
           height: 48,
           borderRadius: '50%',
-          background: 'rgba(255,255,255,0.15)',
+          background: 'rgba(255,255,255,0.2)',
           border: 'none',
           color: 'white',
           fontSize: '1.5rem',
@@ -166,11 +156,9 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          transition: 'all 0.2s',
+          zIndex: 1,
           opacity: currentIndex === items.length - 1 ? 0.3 : 1,
         }}
-        onMouseEnter={(e) => { e.target.style.background = 'rgba(255,255,255,0.3)'; }}
-        onMouseLeave={(e) => { e.target.style.background = 'rgba(255,255,255,0.15)'; }}
         aria-label="Próximo"
       >
         →
@@ -248,6 +236,7 @@ export default function Gallery() {
                 cursor: 'pointer',
                 position: 'relative',
                 aspectRatio: '4/3',
+                background: 'var(--cream-dark)',
                 boxShadow: 'var(--shadow)',
                 transition: 'all 0.3s ease',
               }}
@@ -257,6 +246,7 @@ export default function Gallery() {
                 src={item.image}
                 alt={item.title}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
+                onError={(e) => { e.target.style.display = 'none'; }}
               />
               <div
                 style={{
