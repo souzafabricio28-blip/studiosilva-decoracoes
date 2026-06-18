@@ -48,7 +48,7 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
     <div
       onClick={onClose}
       style={{
-        position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.9)',
+        position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)',
         zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center',
         cursor: 'pointer',
       }}
@@ -57,10 +57,10 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
         onClick={(e) => { e.stopPropagation(); onPrev(); setImgError(false); }}
         style={{
           position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)',
-          width: 48, height: 48, borderRadius: '50%', background: 'rgba(255,255,255,0.2)',
+          width: 48, height: 48, borderRadius: '50%', background: 'rgba(255,255,255,0.15)',
           border: 'none', color: 'white', fontSize: '1.5rem', cursor: 'pointer',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1,
-          opacity: currentIndex === 0 ? 0.3 : 1,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10,
+          opacity: currentIndex === 0 ? 0.25 : 1,
         }}
         aria-label="Anterior"
       >
@@ -71,12 +71,11 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
         onClick={(e) => e.stopPropagation()}
         style={{
           display: 'flex', flexDirection: 'column', alignItems: 'center',
-          maxWidth: '90vw', maxHeight: '90vh',
+          justifyContent: 'center', width: '95vw', height: '95vh',
         }}
       >
         {imgError ? (
-          <div style={{ color: 'rgba(255,255,255,0.5)', padding: 40, textAlign: 'center' }}>
-            <div style={{ fontSize: '3rem', marginBottom: 12 }}>🖼️</div>
+          <div style={{ color: 'rgba(255,255,255,0.5)', textAlign: 'center' }}>
             <p>Imagem indisponível</p>
           </div>
         ) : (
@@ -84,13 +83,18 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
             src={item.image}
             alt={item.title}
             style={{
-              display: 'block', maxWidth: '85vw', maxHeight: '78vh',
-              objectFit: 'contain', borderRadius: 8, width: 'auto', height: 'auto',
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              borderRadius: 4,
             }}
             onError={() => setImgError(true)}
           />
         )}
-        <div style={{ padding: '14px 0 0', textAlign: 'center' }}>
+        <div style={{
+          position: 'absolute', bottom: 24, left: 0, right: 0,
+          textAlign: 'center', padding: '0 80px',
+        }}>
           <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', color: 'white', marginBottom: 2 }}>
             {item.title}
           </h3>
@@ -104,10 +108,10 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
         onClick={(e) => { e.stopPropagation(); onNext(); setImgError(false); }}
         style={{
           position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)',
-          width: 48, height: 48, borderRadius: '50%', background: 'rgba(255,255,255,0.2)',
+          width: 48, height: 48, borderRadius: '50%', background: 'rgba(255,255,255,0.15)',
           border: 'none', color: 'white', fontSize: '1.5rem', cursor: 'pointer',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1,
-          opacity: currentIndex === items.length - 1 ? 0.3 : 1,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10,
+          opacity: currentIndex === items.length - 1 ? 0.25 : 1,
         }}
         aria-label="Próximo"
       >
