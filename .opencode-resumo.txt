@@ -4,7 +4,7 @@ Data: 13/06/2026
 SITE:
 - Next.js 14.2.29
 - Paleta: rosa + cinza rosado (#F3ECEF / #EBE2E7)
-- Hospedado em: https://studiosilva-decoracoes.vercel.app
+- Hospedado em: https://studio-silva-decoracoes.vercel.app
 - GitHub: https://github.com/souzafabricio28-blip/studiosilva-decoracoes
 - Deploy automático via GitHub Actions (push na master)
 
