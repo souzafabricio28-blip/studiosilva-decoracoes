@@ -131,11 +131,18 @@ export default function Gallery() {
             ←
           </button>
 
-          <img
-            src={item.image}
-            alt={item.title}
-            style={{ maxWidth: '92vw', maxHeight: '85vh', objectFit: 'contain', display: 'block', borderRadius: 4 }}
-          />
+          <div
+            style={{
+              maxWidth: '92vw', maxHeight: '85vh',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            <img
+              src={item.image}
+              alt={item.title}
+              style={{ maxWidth: '100%', maxHeight: '85vh', objectFit: 'contain', display: 'block', borderRadius: 4 }}
+            />
+          </div>
 
           <button
             onClick={(e) => { e.stopPropagation(); goNext(); }}
