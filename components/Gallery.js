@@ -163,7 +163,7 @@ export default function Gallery() {
               style={{
                 borderRadius: 'var(--radius)', overflow: 'hidden', cursor: 'pointer',
                 position: 'relative', aspectRatio: '4/3',
-                background: 'var(--cream-dark)', boxShadow: 'var(--shadow)',
+                background: 'var(--bg-light)', boxShadow: 'var(--shadow)',
                 transition: 'all 0.3s ease',
               }}
               className="gallery-item"
