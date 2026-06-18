@@ -87,7 +87,7 @@ export default function Gallery() {
               onClick={() => setOpen(idx)}
               style={{
                 borderRadius: 'var(--radius)', overflow: 'hidden', cursor: 'pointer',
-                position: 'relative', aspectRatio: '4/3',
+                position: 'relative', paddingBottom: '75%',
                 background: 'var(--bg-light)', boxShadow: 'var(--shadow)',
                 transition: 'all 0.3s ease',
               }}
@@ -161,7 +161,8 @@ export default function Gallery() {
             <img
               src={item.image}
               alt={item.title}
-              style={{ maxWidth: '90vw', maxHeight: '85vh', objectFit: 'contain', borderRadius: 4, display: 'block' }}
+              className="lightbox-img"
+              style={{ objectFit: 'contain', borderRadius: 4, display: 'block', maxWidth: '90vw', maxHeight: '85vh' }}
             />
 
             <button
@@ -216,6 +217,12 @@ export default function Gallery() {
         @media (max-width: 480px) {
           .gallery-grid {
             grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 900px) {
+          .lightbox-overlay .lightbox-img {
+            max-width: 92vw !important;
+            max-height: 70vh !important;
           }
         }
       `}</style>
