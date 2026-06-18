@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const categories = [
   { id: 'all', label: 'Todas' },
@@ -31,6 +31,27 @@ export default function Gallery() {
     : galleryItems.filter(item => item.category === active);
 
   const item = open !== null ? filtered[open] : null;
+
+  const goNext = useCallback(() => {
+    if (open === null) return;
+    setOpen(open === filtered.length - 1 ? 0 : open + 1);
+  }, [open, filtered.length]);
+
+  const goPrev = useCallback(() => {
+    if (open === null) return;
+    setOpen(open === 0 ? filtered.length - 1 : open - 1);
+  }, [open, filtered.length]);
+
+  useEffect(() => {
+    if (open === null) return;
+    const handler = (e) => {
+      if (e.key === 'Escape') setOpen(null);
+      if (e.key === 'ArrowRight') goNext();
+      if (e.key === 'ArrowLeft') goPrev();
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [open, goNext, goPrev]);
 
   return (
     <section id="gallery" className="section" style={{ background: 'var(--cream)' }}>
@@ -96,6 +117,7 @@ export default function Gallery() {
 
       {item && (
         <div
+          className="lightbox-overlay"
           onClick={() => setOpen(null)}
           style={{
             position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.9)',
@@ -167,11 +189,25 @@ export default function Gallery() {
       )}
 
       <style jsx>{`
+        .gallery-item {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(0,0,0,0.25) !important;
+        }
         .gallery-item:hover :global(img) {
-          transform: scale(1.08) !important;
+          transform: scale(1.08);
         }
         .gallery-item:hover .gallery-overlay {
           opacity: 1;
+        }
+        .lightbox-overlay {
+          animation: fadeIn 0.2s ease;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
         @media (max-width: 768px) {
           .gallery-grid {
