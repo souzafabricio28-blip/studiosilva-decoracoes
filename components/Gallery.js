@@ -99,6 +99,19 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
       }}
     >
       <button
+        onClick={(e) => { e.stopPropagation(); onClose(); }}
+        style={{
+          position: 'absolute', top: 16, right: 16,
+          width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,0.15)',
+          border: 'none', color: 'white', fontSize: '1.4rem', cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10,
+        }}
+        aria-label="Fechar"
+      >
+        ✕
+      </button>
+
+      <button
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
         style={{
           position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)',
