@@ -54,7 +54,7 @@ export default function Gallery() {
   }, [open, goNext, goPrev]);
 
   return (
-    <section id="gallery" className="section" style={{ background: 'var(--cream)' }}>
+    <section id="gallery" className="section" style={{ background: 'var(--bg-light)' }}>
       <div className="container">
         <h2 className="section-title">Galeria</h2>
         <p className="section-subtitle">
@@ -85,7 +85,7 @@ export default function Gallery() {
             <div
               key={item.id}
               onClick={() => setOpen(idx)}
-              style={{ borderRadius: 8, overflow: 'hidden', cursor: 'pointer', background: '#222', lineHeight: 0 }}
+              style={{ borderRadius: 8, overflow: 'hidden', cursor: 'pointer', background: '#2a2a2a', border: '1px solid #444', minHeight: 180 }}
             >
               <img
                 src={item.image}
