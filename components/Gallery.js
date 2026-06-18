@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image';
 
 const categories = [
   { id: 'all', label: 'Todas' },
@@ -107,13 +106,11 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
             overflow: 'hidden',
           }}
         >
-          <Image
-            src={item.image}
-            alt={item.title}
-            fill
-            sizes="(max-width: 768px) 100vw, 700px"
-            style={{ objectFit: 'contain' }}
-          />
+              <img
+                src={item.image}
+                alt={item.title}
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
           <button
             onClick={onClose}
             style={{
@@ -256,12 +253,10 @@ export default function Gallery() {
               }}
               className="gallery-item"
             >
-              <Image
+              <img
                 src={item.image}
                 alt={item.title}
-                fill
-                sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
-                style={{ objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
               />
               <div
                 style={{
