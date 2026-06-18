@@ -42,39 +42,24 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
   const item = items[currentIndex];
   if (!item) return null;
 
+  const [imgError, setImgError] = useState(false);
+
   return (
     <div
       onClick={onClose}
       style={{
-        position: 'fixed',
-        inset: 0,
-        background: 'rgba(0,0,0,0.9)',
-        zIndex: 2000,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.9)',
+        zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center',
         cursor: 'pointer',
       }}
     >
       <button
-        onClick={(e) => { e.stopPropagation(); onPrev(); }}
+        onClick={(e) => { e.stopPropagation(); onPrev(); setImgError(false); }}
         style={{
-          position: 'absolute',
-          left: 16,
-          top: '50%',
-          transform: 'translateY(-50%)',
-          width: 48,
-          height: 48,
-          borderRadius: '50%',
-          background: 'rgba(255,255,255,0.2)',
-          border: 'none',
-          color: 'white',
-          fontSize: '1.5rem',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1,
+          position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)',
+          width: 48, height: 48, borderRadius: '50%', background: 'rgba(255,255,255,0.2)',
+          border: 'none', color: 'white', fontSize: '1.5rem', cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1,
           opacity: currentIndex === 0 ? 0.3 : 1,
         }}
         aria-label="Anterior"
@@ -85,78 +70,43 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          maxHeight: '90vh',
-          maxWidth: '90vw',
+          display: 'flex', flexDirection: 'column', alignItems: 'center',
+          maxWidth: '90vw', maxHeight: '90vh',
         }}
       >
-        <div style={{ position: 'relative', maxHeight: '85vh', maxWidth: '90vw' }}>
+        {imgError ? (
+          <div style={{ color: 'rgba(255,255,255,0.5)', padding: 40, textAlign: 'center' }}>
+            <div style={{ fontSize: '3rem', marginBottom: 12 }}>🖼️</div>
+            <p>Imagem indisponível</p>
+          </div>
+        ) : (
           <img
             src={item.image}
             alt={item.title}
             style={{
-              display: 'block',
-              maxWidth: '90vw',
-              maxHeight: '85vh',
-              objectFit: 'contain',
-              borderRadius: 8,
+              display: 'block', maxWidth: '85vw', maxHeight: '78vh',
+              objectFit: 'contain', borderRadius: 8, width: 'auto', height: 'auto',
             }}
-            onError={(e) => { e.target.style.display = 'none'; }}
+            onError={() => setImgError(true)}
           />
-          <button
-            onClick={onClose}
-            style={{
-              position: 'absolute',
-              top: 8,
-              right: 8,
-              width: 36,
-              height: 36,
-              borderRadius: '50%',
-              background: 'rgba(0,0,0,0.5)',
-              border: 'none',
-              color: 'white',
-              fontSize: '1.2rem',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            ✕
-          </button>
-        </div>
-        <div style={{ padding: '12px 0', textAlign: 'center' }}>
-          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', color: 'white', marginBottom: 4 }}>
+        )}
+        <div style={{ padding: '14px 0 0', textAlign: 'center' }}>
+          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', color: 'white', marginBottom: 2 }}>
             {item.title}
           </h3>
-          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem' }}>
+          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem' }}>
             {currentIndex + 1} / {items.length}
           </p>
         </div>
       </div>
 
       <button
-        onClick={(e) => { e.stopPropagation(); onNext(); }}
+        onClick={(e) => { e.stopPropagation(); onNext(); setImgError(false); }}
         style={{
-          position: 'absolute',
-          right: 16,
-          top: '50%',
-          transform: 'translateY(-50%)',
-          width: 48,
-          height: 48,
-          borderRadius: '50%',
-          background: 'rgba(255,255,255,0.2)',
-          border: 'none',
-          color: 'white',
-          fontSize: '1.5rem',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1,
+          position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)',
+          width: 48, height: 48, borderRadius: '50%', background: 'rgba(255,255,255,0.2)',
+          border: 'none', color: 'white', fontSize: '1.5rem', cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1,
           opacity: currentIndex === items.length - 1 ? 0.3 : 1,
         }}
         aria-label="Próximo"
@@ -186,29 +136,16 @@ export default function Gallery() {
           Confira alguns dos nossos trabalhos. Cada detalhe feito com muito carinho.
         </p>
 
-        <div
-          style={{
-            display: 'flex',
-            gap: 12,
-            justifyContent: 'center',
-            marginBottom: 48,
-            flexWrap: 'wrap',
-          }}
-        >
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginBottom: 48, flexWrap: 'wrap' }}>
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => { setActiveCategory(cat.id); setLightboxIndex(null); }}
               style={{
-                padding: '10px 24px',
-                borderRadius: 50,
-                border: 'none',
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '0.9rem',
-                fontWeight: 500,
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                  background: activeCategory === cat.id ? 'var(--rose-primary)' : 'var(--bg-light)',
+                padding: '10px 24px', borderRadius: 50, border: 'none',
+                fontFamily: "'Inter', sans-serif", fontSize: '0.9rem', fontWeight: 500,
+                cursor: 'pointer', transition: 'all 0.3s ease',
+                background: activeCategory === cat.id ? 'var(--rose-primary)' : 'var(--bg-light)',
                 color: activeCategory === cat.id ? 'var(--white)' : 'var(--text-soft)',
                 boxShadow: activeCategory === cat.id ? 'none' : 'var(--shadow)',
               }}
@@ -218,26 +155,15 @@ export default function Gallery() {
           ))}
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 16,
-          }}
-          className="gallery-grid"
-        >
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }} className="gallery-grid">
           {filtered.map((item, idx) => (
             <div
               key={item.id}
               onClick={() => setLightboxIndex(idx)}
               style={{
-                borderRadius: 'var(--radius)',
-                overflow: 'hidden',
-                cursor: 'pointer',
-                position: 'relative',
-                aspectRatio: '4/3',
-                background: 'var(--cream-dark)',
-                boxShadow: 'var(--shadow)',
+                borderRadius: 'var(--radius)', overflow: 'hidden', cursor: 'pointer',
+                position: 'relative', aspectRatio: '4/3',
+                background: 'var(--cream-dark)', boxShadow: 'var(--shadow)',
                 transition: 'all 0.3s ease',
               }}
               className="gallery-item"
@@ -246,16 +172,12 @@ export default function Gallery() {
                 src={item.image}
                 alt={item.title}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
-                onError={(e) => { e.target.style.display = 'none'; }}
               />
               <div
                 style={{
-                  position: 'absolute',
-                  bottom: 0, left: 0, right: 0,
+                  position: 'absolute', bottom: 0, left: 0, right: 0,
                   background: 'linear-gradient(transparent 0%, rgba(0,0,0,0.6) 100%)',
-                  padding: '40px 16px 12px',
-                  opacity: 0,
-                  transition: 'opacity 0.3s ease',
+                  padding: '40px 16px 12px', opacity: 0, transition: 'opacity 0.3s ease',
                 }}
                 className="gallery-overlay"
               >
@@ -279,9 +201,6 @@ export default function Gallery() {
       )}
 
       <style jsx>{`
-        .gallery-item {
-          overflow: hidden;
-        }
         .gallery-item:hover :global(img) {
           transform: scale(1.08) !important;
         }
