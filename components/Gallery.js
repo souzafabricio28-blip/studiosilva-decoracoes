@@ -80,21 +80,25 @@ export default function Gallery() {
           ))}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }} className="gallery-grid">
-          {filtered.map((item, idx) => (
-            <div
-              key={item.id}
-              onClick={() => setOpen(idx)}
-              style={{ borderRadius: 8, overflow: 'hidden', cursor: 'pointer', background: '#3a3a3a' }}
-            >
-              <img
-                src={item.image}
-                alt={item.title}
-                style={{ width: '100%', display: 'block' }}
-              />
-            </div>
-          ))}
-        </div>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <tbody>
+            {filtered.reduce((rows, item, idx) => {
+              if (idx % 3 === 0) rows.push([]);
+              rows[rows.length - 1].push(item);
+              return rows;
+            }, []).map((row, ri) => (
+              <tr key={ri}>
+                {row.map((item, ci) => (
+                  <td key={item.id} style={{ padding: 8, verticalAlign: 'top' }}
+                      onClick={() => setOpen(ri * 3 + ci)}>
+                    <img src={item.image} alt={item.title} style={{ width: '100%' }} />
+                  </td>
+                ))}
+                {row.length < 3 && Array.from({ length: 3 - row.length }).map((_, ei) => <td key={`e${ei}`} style={{ padding: 8 }}></td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       {item && (
@@ -160,18 +164,6 @@ export default function Gallery() {
         </div>
       )}
 
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .gallery-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-        }
-        @media (max-width: 480px) {
-          .gallery-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
