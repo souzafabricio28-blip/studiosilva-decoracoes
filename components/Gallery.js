@@ -85,13 +85,11 @@ export default function Gallery() {
             <div
               key={item.id}
               onClick={() => setOpen(idx)}
-              style={{ borderRadius: 8, overflow: 'hidden', cursor: 'pointer', background: '#2a2a2a', border: '1px solid #444', minHeight: 180 }}
             >
               <img
                 src={item.image}
                 alt={item.title}
-                loading="lazy"
-                style={{ width: '100%', display: 'block' }}
+                style={{ width: '100%', display: 'block', borderRadius: 8 }}
               />
             </div>
           ))}
