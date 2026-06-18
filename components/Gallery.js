@@ -85,26 +85,28 @@ export default function Gallery() {
             <div
               key={item.id}
               onClick={() => setOpen(idx)}
+              className="gallery-item"
               style={{
                 borderRadius: 'var(--radius)', overflow: 'hidden', cursor: 'pointer',
-                position: 'relative', paddingBottom: '75%',
+                position: 'relative',
                 background: 'var(--bg-light)', boxShadow: 'var(--shadow)',
-                transition: 'all 0.3s ease',
+                lineHeight: 0,
               }}
-              className="gallery-item"
             >
               <img
                 src={item.image}
                 alt={item.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}
+                className="gallery-img"
+                style={{ width: '100%', display: 'block', aspectRatio: '4/3', objectFit: 'cover' }}
               />
               <div
+                className="gallery-overlay"
                 style={{
                   position: 'absolute', bottom: 0, left: 0, right: 0,
                   background: 'linear-gradient(transparent 0%, rgba(0,0,0,0.6) 100%)',
                   padding: '40px 16px 12px', opacity: 0, transition: 'opacity 0.3s ease',
+                  lineHeight: 'normal',
                 }}
-                className="gallery-overlay"
               >
                 <div style={{ color: 'white', fontWeight: 600, fontSize: '0.95rem' }}>
                   {item.title}
@@ -128,8 +130,8 @@ export default function Gallery() {
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              maxWidth: '95vw', maxHeight: '95vh', position: 'relative',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              position: 'relative',
             }}
           >
             <div
@@ -143,39 +145,43 @@ export default function Gallery() {
                 fontWeight: 'bold',
               }}
             >
-              ✕
+              &#10005;
             </div>
             <button
               onClick={(e) => { e.stopPropagation(); setOpen(open === 0 ? filtered.length - 1 : open - 1); }}
               style={{
-                position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)',
-                width: 48, height: 48, borderRadius: '50%',
-                background: 'rgba(255,255,255,0.2)', border: 'none',
+                position: 'absolute', left: -56, top: '50%', transform: 'translateY(-50%)',
+                width: 44, height: 44, borderRadius: '50%',
+                background: 'rgba(255,255,255,0.15)', border: 'none',
                 color: 'white', fontSize: '1.5rem', cursor: 'pointer', zIndex: 10,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}
             >
-              ←
+              &#8592;
             </button>
 
             <img
               src={item.image}
               alt={item.title}
               className="lightbox-img"
-              style={{ objectFit: 'contain', borderRadius: 4, display: 'block', maxWidth: '90vw', maxHeight: '85vh' }}
+              style={{
+                maxWidth: '90vw', maxHeight: '85vh',
+                width: 'auto', height: 'auto',
+                objectFit: 'contain', borderRadius: 4, display: 'block',
+              }}
             />
 
             <button
               onClick={(e) => { e.stopPropagation(); setOpen(open === filtered.length - 1 ? 0 : open + 1); }}
               style={{
-                position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)',
-                width: 48, height: 48, borderRadius: '50%',
-                background: 'rgba(255,255,255,0.2)', border: 'none',
+                position: 'absolute', right: -56, top: '50%', transform: 'translateY(-50%)',
+                width: 44, height: 44, borderRadius: '50%',
+                background: 'rgba(255,255,255,0.15)', border: 'none',
                 color: 'white', fontSize: '1.5rem', cursor: 'pointer', zIndex: 10,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}
             >
-              →
+              &#8594;
             </button>
           </div>
 
@@ -183,7 +189,7 @@ export default function Gallery() {
             position: 'absolute', bottom: 24, left: 0, right: 0,
             textAlign: 'center', color: 'white',
           }}>
-            <p style={{ margin: 0, fontSize: '0.9rem' }}>{item.title} — {open + 1}/{filtered.length}</p>
+            <p style={{ margin: 0, fontSize: '0.9rem' }}>{item.title} &mdash; {open + 1}/{filtered.length}</p>
           </div>
         </div>
       )}
@@ -196,11 +202,14 @@ export default function Gallery() {
           transform: translateY(-4px);
           box-shadow: 0 12px 32px rgba(0,0,0,0.25) !important;
         }
-        .gallery-item:hover :global(img) {
+        .gallery-item:hover .gallery-img {
           transform: scale(1.08);
         }
         .gallery-item:hover .gallery-overlay {
           opacity: 1;
+        }
+        .gallery-img {
+          transition: transform 0.3s ease;
         }
         .lightbox-overlay {
           animation: fadeIn 0.2s ease;
@@ -217,12 +226,6 @@ export default function Gallery() {
         @media (max-width: 480px) {
           .gallery-grid {
             grid-template-columns: 1fr !important;
-          }
-        }
-        @media (max-width: 900px) {
-          .lightbox-overlay .lightbox-img {
-            max-width: 92vw !important;
-            max-height: 70vh !important;
           }
         }
       `}</style>
