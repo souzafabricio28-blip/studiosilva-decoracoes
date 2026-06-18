@@ -126,26 +126,25 @@ export default function Gallery() {
           }}
         >
           <div
-            onClick={(e) => { e.stopPropagation(); setOpen(null); }}
-            style={{
-              position: 'absolute', top: 16, right: 16, zIndex: 10,
-              width: 44, height: 44, borderRadius: '50%',
-              background: '#d45c7a', border: '2px solid white',
-              color: 'white', fontSize: '1.5rem', cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontWeight: 'bold',
-            }}
-          >
-            ✕
-          </div>
-
-          <div
             onClick={(e) => e.stopPropagation()}
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              maxWidth: '95vw', maxHeight: '95vh',
+              maxWidth: '95vw', maxHeight: '95vh', position: 'relative',
             }}
           >
+            <div
+              onClick={(e) => { e.stopPropagation(); setOpen(null); }}
+              style={{
+                position: 'absolute', top: 8, right: 8, zIndex: 10,
+                width: 40, height: 40, borderRadius: '50%',
+                background: '#d45c7a', border: '2px solid white',
+                color: 'white', fontSize: '1.4rem', cursor: 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontWeight: 'bold',
+              }}
+            >
+              ✕
+            </div>
             <button
               onClick={(e) => { e.stopPropagation(); setOpen(open === 0 ? filtered.length - 1 : open - 1); }}
               style={{
