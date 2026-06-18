@@ -80,19 +80,19 @@ export default function Gallery() {
           ))}
         </div>
 
-        <div className="gallery-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }} className="gallery-grid">
           {filtered.map((item, idx) => (
             <div
               key={item.id}
               onClick={() => setOpen(idx)}
-              title={item.title}
-              style={{
-                borderRadius: 8, cursor: 'pointer', paddingBottom: '75%',
-                backgroundImage: `url(${item.image})`,
-                backgroundSize: 'cover', backgroundPosition: 'center',
-                backgroundColor: '#333',
-              }}
-            />
+              style={{ borderRadius: 8, overflow: 'hidden', cursor: 'pointer', background: '#3a3a3a' }}
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                style={{ width: '100%', display: 'block' }}
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -116,7 +116,7 @@ export default function Gallery() {
               fontWeight: 'bold',
             }}
           >
-            &#10005;
+            ✕
           </div>
 
           <button
@@ -129,7 +129,7 @@ export default function Gallery() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
           >
-            &#8592;
+            ←
           </button>
 
           <img
@@ -148,14 +148,14 @@ export default function Gallery() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
           >
-            &#8594;
+            →
           </button>
 
           <div style={{
             position: 'absolute', bottom: 24, left: 0, right: 0,
             textAlign: 'center', color: 'white',
           }}>
-            <p style={{ margin: 0, fontSize: '0.9rem' }}>{item.title} &mdash; {open + 1}/{filtered.length}</p>
+            <p style={{ margin: 0, fontSize: '0.9rem' }}>{item.title} — {open + 1}/{filtered.length}</p>
           </div>
         </div>
       )}
