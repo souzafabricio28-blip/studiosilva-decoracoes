@@ -80,38 +80,18 @@ export default function Gallery() {
           ))}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }} className="gallery-grid">
+        <div className="gallery-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
           {filtered.map((item, idx) => (
             <div
               key={item.id}
               onClick={() => setOpen(idx)}
-              className="gallery-item"
-              style={{
-                borderRadius: 'var(--radius)', overflow: 'hidden', cursor: 'pointer',
-                position: 'relative',
-                background: 'var(--bg-light)', boxShadow: 'var(--shadow)',
-                lineHeight: 0,
-              }}
+              style={{ borderRadius: 8, overflow: 'hidden', cursor: 'pointer', background: '#222', lineHeight: 0 }}
             >
               <img
                 src={item.image}
                 alt={item.title}
-                className="gallery-img"
-                style={{ width: '100%', display: 'block', aspectRatio: '4/3', objectFit: 'cover' }}
+                style={{ width: '100%', display: 'block' }}
               />
-              <div
-                className="gallery-overlay"
-                style={{
-                  position: 'absolute', bottom: 0, left: 0, right: 0,
-                  background: 'linear-gradient(transparent 0%, rgba(0,0,0,0.6) 100%)',
-                  padding: '40px 16px 12px', opacity: 0, transition: 'opacity 0.3s ease',
-                  lineHeight: 'normal',
-                }}
-              >
-                <div style={{ color: 'white', fontWeight: 600, fontSize: '0.95rem' }}>
-                  {item.title}
-                </div>
-              </div>
             </div>
           ))}
         </div>
@@ -119,105 +99,68 @@ export default function Gallery() {
 
       {item && (
         <div
-          className="lightbox-overlay"
           onClick={() => setOpen(null)}
           style={{
-            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.9)',
+            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)',
             zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center',
-            cursor: 'pointer',
           }}
         >
           <div
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => { e.stopPropagation(); setOpen(null); }}
             style={{
-              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-              position: 'relative',
+              position: 'absolute', top: 16, right: 16, zIndex: 10,
+              width: 44, height: 44, borderRadius: '50%',
+              background: '#d45c7a', border: '2px solid white',
+              color: 'white', fontSize: '1.5rem', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontWeight: 'bold',
             }}
           >
-            <div
-              onClick={(e) => { e.stopPropagation(); setOpen(null); }}
-              style={{
-                position: 'absolute', top: 8, right: 8, zIndex: 10,
-                width: 40, height: 40, borderRadius: '50%',
-                background: '#d45c7a', border: '2px solid white',
-                color: 'white', fontSize: '1.4rem', cursor: 'pointer',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontWeight: 'bold',
-              }}
-            >
-              &#10005;
-            </div>
-            <button
-              onClick={(e) => { e.stopPropagation(); setOpen(open === 0 ? filtered.length - 1 : open - 1); }}
-              style={{
-                position: 'absolute', left: -56, top: '50%', transform: 'translateY(-50%)',
-                width: 44, height: 44, borderRadius: '50%',
-                background: 'rgba(255,255,255,0.15)', border: 'none',
-                color: 'white', fontSize: '1.5rem', cursor: 'pointer', zIndex: 10,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}
-            >
-              &#8592;
-            </button>
-
-            <img
-              src={item.image}
-              alt={item.title}
-              className="lightbox-img"
-              style={{
-                maxWidth: '90vw', maxHeight: '85vh',
-                width: 'auto', height: 'auto',
-                objectFit: 'contain', borderRadius: 4, display: 'block',
-              }}
-            />
-
-            <button
-              onClick={(e) => { e.stopPropagation(); setOpen(open === filtered.length - 1 ? 0 : open + 1); }}
-              style={{
-                position: 'absolute', right: -56, top: '50%', transform: 'translateY(-50%)',
-                width: 44, height: 44, borderRadius: '50%',
-                background: 'rgba(255,255,255,0.15)', border: 'none',
-                color: 'white', fontSize: '1.5rem', cursor: 'pointer', zIndex: 10,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}
-            >
-              &#8594;
-            </button>
+            ✕
           </div>
+
+          <button
+            onClick={(e) => { e.stopPropagation(); goPrev(); }}
+            style={{
+              position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)',
+              width: 48, height: 48, borderRadius: '50%',
+              background: 'rgba(255,255,255,0.2)', border: 'none',
+              color: 'white', fontSize: '1.5rem', cursor: 'pointer', zIndex: 10,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            ←
+          </button>
+
+          <img
+            src={item.image}
+            alt={item.title}
+            style={{ maxWidth: '92vw', maxHeight: '85vh', objectFit: 'contain', display: 'block', borderRadius: 4 }}
+          />
+
+          <button
+            onClick={(e) => { e.stopPropagation(); goNext(); }}
+            style={{
+              position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)',
+              width: 48, height: 48, borderRadius: '50%',
+              background: 'rgba(255,255,255,0.2)', border: 'none',
+              color: 'white', fontSize: '1.5rem', cursor: 'pointer', zIndex: 10,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            →
+          </button>
 
           <div style={{
             position: 'absolute', bottom: 24, left: 0, right: 0,
             textAlign: 'center', color: 'white',
           }}>
-            <p style={{ margin: 0, fontSize: '0.9rem' }}>{item.title} &mdash; {open + 1}/{filtered.length}</p>
+            <p style={{ margin: 0, fontSize: '0.9rem' }}>{item.title} — {open + 1}/{filtered.length}</p>
           </div>
         </div>
       )}
 
       <style jsx>{`
-        .gallery-item {
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .gallery-item:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 32px rgba(0,0,0,0.25) !important;
-        }
-        .gallery-item:hover .gallery-img {
-          transform: scale(1.08);
-        }
-        .gallery-item:hover .gallery-overlay {
-          opacity: 1;
-        }
-        .gallery-img {
-          transition: transform 0.3s ease;
-        }
-        .lightbox-overlay {
-          animation: fadeIn 0.2s ease;
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
         @media (max-width: 768px) {
           .gallery-grid {
             grid-template-columns: repeat(2, 1fr) !important;

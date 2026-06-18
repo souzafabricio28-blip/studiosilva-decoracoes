@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 export default function About() {
   return (
     <section id="about" className="section" style={{ background: 'var(--bg-light)' }}>
@@ -20,19 +18,16 @@ export default function About() {
         >
           <div
             style={{
-              position: 'relative',
               borderRadius: 'var(--radius)',
               overflow: 'hidden',
-              aspectRatio: '4/3',
-              background: 'linear-gradient(135deg, var(--rose-light), var(--cream-dark))',
+              background: '#222',
+              lineHeight: 0,
             }}
           >
-            <Image
+            <img
               src="/images/about.jpg"
               alt="Studio Silva Decorações"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              style={{ objectFit: 'cover' }}
+              style={{ width: '100%', display: 'block' }}
             />
           </div>
 
