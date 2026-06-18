@@ -109,20 +109,6 @@ export default function Gallery() {
             zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}
         >
-          <div
-            onClick={(e) => { e.stopPropagation(); setOpen(null); }}
-            style={{
-              position: 'absolute', top: 16, right: 16, zIndex: 10,
-              width: 44, height: 44, borderRadius: '50%',
-              background: '#d45c7a', border: '2px solid white',
-              color: 'white', fontSize: '1.5rem', cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontWeight: 'bold',
-            }}
-          >
-            ✕
-          </div>
-
           <button
             onClick={(e) => { e.stopPropagation(); goPrev(); }}
             style={{
@@ -136,11 +122,26 @@ export default function Gallery() {
             ←
           </button>
 
-          <img
-            src={item.image}
-            alt={item.title}
-            style={{ maxWidth: '90vw', maxHeight: '85vh', objectFit: 'contain', display: 'block', borderRadius: 4 }}
-          />
+          <div style={{ position: 'relative', display: 'inline-block' }}>
+            <img
+              src={item.image}
+              alt={item.title}
+              style={{ maxWidth: '90vw', maxHeight: '85vh', objectFit: 'contain', display: 'block', borderRadius: 4 }}
+            />
+            <div
+              onClick={(e) => { e.stopPropagation(); setOpen(null); }}
+              style={{
+                position: 'absolute', top: 8, right: 8,
+                width: 36, height: 36, borderRadius: '50%',
+                background: '#d45c7a', border: '2px solid white',
+                color: 'white', fontSize: '1.2rem', cursor: 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontWeight: 'bold',
+              }}
+            >
+              ✕
+            </div>
+          </div>
 
           <button
             onClick={(e) => { e.stopPropagation(); goNext(); }}
