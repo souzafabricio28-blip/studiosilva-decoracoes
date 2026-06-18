@@ -85,13 +85,14 @@ export default function Gallery() {
             <div
               key={item.id}
               onClick={() => setOpen(idx)}
-            >
-              <img
-                src={item.image}
-                alt={item.title}
-                style={{ width: '100%', display: 'block', borderRadius: 8 }}
-              />
-            </div>
+              title={item.title}
+              style={{
+                borderRadius: 8, cursor: 'pointer', paddingBottom: '75%',
+                backgroundImage: `url(${item.image})`,
+                backgroundSize: 'cover', backgroundPosition: 'center',
+                backgroundColor: '#333',
+              }}
+            />
           ))}
         </div>
       </div>
@@ -115,7 +116,7 @@ export default function Gallery() {
               fontWeight: 'bold',
             }}
           >
-            ✕
+            &#10005;
           </div>
 
           <button
@@ -128,21 +129,14 @@ export default function Gallery() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
           >
-            ←
+            &#8592;
           </button>
 
-          <div
-            style={{
-              maxWidth: '92vw', maxHeight: '85vh',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}
-          >
-            <img
-              src={item.image}
-              alt={item.title}
-              style={{ maxWidth: '100%', maxHeight: '85vh', objectFit: 'contain', display: 'block', borderRadius: 4 }}
-            />
-          </div>
+          <img
+            src={item.image}
+            alt={item.title}
+            style={{ maxWidth: '90vw', maxHeight: '85vh', objectFit: 'contain', display: 'block', borderRadius: 4 }}
+          />
 
           <button
             onClick={(e) => { e.stopPropagation(); goNext(); }}
@@ -154,14 +148,14 @@ export default function Gallery() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
           >
-            →
+            &#8594;
           </button>
 
           <div style={{
             position: 'absolute', bottom: 24, left: 0, right: 0,
             textAlign: 'center', color: 'white',
           }}>
-            <p style={{ margin: 0, fontSize: '0.9rem' }}>{item.title} — {open + 1}/{filtered.length}</p>
+            <p style={{ margin: 0, fontSize: '0.9rem' }}>{item.title} &mdash; {open + 1}/{filtered.length}</p>
           </div>
         </div>
       )}
