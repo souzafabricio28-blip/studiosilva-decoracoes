@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 const categories = [
   { id: 'all', label: 'Todas' },
@@ -24,6 +24,12 @@ const galleryItems = Array.from({ length: 26 }, (_, i) => ({
 }));
 
 function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
+  const [imgError, setImgError] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(null);
+  const imgRef = useRef(null);
+
   const handleKeyDown = useCallback((e) => {
     if (e.key === 'Escape') onClose();
     if (e.key === 'ArrowLeft') onPrev();
@@ -39,22 +45,61 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
     };
   }, [handleKeyDown]);
 
+  useEffect(() => {
+    setScale(1);
+    setPan({ x: 0, y: 0 });
+    setImgError(false);
+  }, [currentIndex]);
+
+  const handleWheel = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const delta = e.deltaY > 0 ? -0.2 : 0.2;
+    setScale((prev) => Math.max(0.5, Math.min(5, prev + delta)));
+  }, []);
+
+  const handleMouseDown = useCallback((e) => {
+    e.preventDefault();
+    setDragging({ x: e.clientX - pan.x, y: e.clientY - pan.y });
+  }, [pan]);
+
+  const handleMouseMove = useCallback((e) => {
+    if (!dragging) return;
+    setPan({ x: e.clientX - dragging.x, y: e.clientY - dragging.y });
+  }, [dragging]);
+
+  const handleMouseUp = useCallback(() => {
+    setDragging(null);
+  }, []);
+
+  const handleDoubleClick = useCallback((e) => {
+    e.stopPropagation();
+    setScale(1);
+    setPan({ x: 0, y: 0 });
+  }, []);
+
   const item = items[currentIndex];
   if (!item) return null;
 
-  const [imgError, setImgError] = useState(false);
+  const cursorStyle = scale > 1 ? (dragging ? 'grabbing' : 'grab') : 'pointer';
 
   return (
     <div
-      onClick={onClose}
+      onClick={scale > 1 ? undefined : onClose}
+      onWheel={handleWheel}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+      onDoubleClick={handleDoubleClick}
       style={{
         position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)',
         zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center',
-        cursor: 'pointer',
+        overflow: 'hidden', cursor: cursorStyle, userSelect: 'none',
       }}
     >
       <button
-        onClick={(e) => { e.stopPropagation(); onPrev(); setImgError(false); }}
+        onClick={(e) => { e.stopPropagation(); onPrev(); }}
         style={{
           position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)',
           width: 48, height: 48, borderRadius: '50%', background: 'rgba(255,255,255,0.15)',
@@ -68,10 +113,13 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
       </button>
 
       <div
-        onClick={(e) => e.stopPropagation()}
+        ref={imgRef}
+        onClick={scale > 1 ? undefined : (e) => e.stopPropagation()}
         style={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center',
-          justifyContent: 'center', width: '95vw', height: '95vh',
+          width: '95vw', height: '95vh',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          transform: `translate(${pan.x}px, ${pan.y}px) scale(${scale})`,
+          transition: dragging ? 'none' : 'transform 0.15s ease',
         }}
       >
         {imgError ? (
@@ -82,30 +130,32 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
           <img
             src={item.image}
             alt={item.title}
+            ref={imgRef}
             style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain',
-              borderRadius: 4,
+              width: '100%', height: '100%',
+              objectFit: 'contain', borderRadius: 4,
+              pointerEvents: 'none',
             }}
             onError={() => setImgError(true)}
+            draggable={false}
           />
         )}
-        <div style={{
-          position: 'absolute', bottom: 24, left: 0, right: 0,
-          textAlign: 'center', padding: '0 80px',
-        }}>
-          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', color: 'white', marginBottom: 2 }}>
-            {item.title}
-          </h3>
-          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem' }}>
-            {currentIndex + 1} / {items.length}
-          </p>
-        </div>
+      </div>
+
+      <div style={{
+        position: 'absolute', bottom: 24, left: 0, right: 0,
+        textAlign: 'center', padding: '0 80px', pointerEvents: 'none',
+      }}>
+        <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', color: 'white', marginBottom: 2 }}>
+          {item.title}
+        </h3>
+        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem' }}>
+          {currentIndex + 1} / {items.length}
+        </p>
       </div>
 
       <button
-        onClick={(e) => { e.stopPropagation(); onNext(); setImgError(false); }}
+        onClick={(e) => { e.stopPropagation(); onNext(); }}
         style={{
           position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)',
           width: 48, height: 48, borderRadius: '50%', background: 'rgba(255,255,255,0.15)',
