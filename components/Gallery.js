@@ -84,32 +84,32 @@ function GalleryModal({ items, currentIndex, onClose, onPrev, onNext }) {
   const cursorStyle = scale > 1 ? (dragging ? 'grabbing' : 'grab') : 'pointer';
 
   return (
-    <div
-      onClick={scale > 1 ? undefined : onClose}
-      onWheel={handleWheel}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      onDoubleClick={handleDoubleClick}
-      style={{
-        position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)',
-        zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center',
-        overflow: 'hidden', cursor: cursorStyle, userSelect: 'none',
-      }}
+      <div
+        onWheel={handleWheel}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        onDoubleClick={handleDoubleClick}
+        style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)',
+          zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          overflow: 'hidden', cursor: cursorStyle, userSelect: 'none',
+        }}
     >
-      <button
+      <span
         onClick={(e) => { e.stopPropagation(); onClose(); }}
         style={{
-          position: 'absolute', top: 16, right: 16,
-          width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,0.15)',
-          border: 'none', color: 'white', fontSize: '1.4rem', cursor: 'pointer',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10,
+          position: 'absolute', top: 12, right: 12,
+          width: 40, height: 40, borderRadius: '50%', background: 'rgba(0,0,0,0.5)',
+          border: '2px solid rgba(255,255,255,0.3)', color: 'white', fontSize: '1.3rem',
+          cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 10, lineHeight: 1,
         }}
         aria-label="Fechar"
       >
         ✕
-      </button>
+      </span>
 
       <button
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
@@ -238,7 +238,7 @@ export default function Gallery() {
               <img
                 src={item.image}
                 alt={item.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}
               />
               <div
                 style={{
