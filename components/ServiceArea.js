@@ -26,7 +26,7 @@ export default function ServiceArea() {
                 color: 'var(--rose-primary)',
               }}
             >
-              Jandira
+              Cotia - SP
             </div>
             <div style={{ color: 'var(--text-soft)', fontSize: '0.9rem', marginTop: 4 }}>
               Sede e atendimento presencial
