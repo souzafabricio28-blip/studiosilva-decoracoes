@@ -30,8 +30,6 @@ export default function Scheduling() {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const today = new Date().toISOString().split('T')[0];
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const phone = '5511960855115';
@@ -103,7 +101,12 @@ export default function Scheduling() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                 <div>
                   <label style={{ display: 'block', marginBottom: 6, color: 'var(--text-dark)', fontWeight: 500, fontSize: '0.9rem' }}>Data *</label>
-                  <input type="date" name="date" value={form.date} onChange={handleChange} required min={today} style={inputStyle} onFocus={(e) => e.target.style.borderColor = 'var(--rose-primary)'} onBlur={(e) => e.target.style.borderColor = 'var(--rose-light)'} />
+                  <input type="text" name="date" value={form.date} onChange={(e) => {
+                    let v = e.target.value.replace(/\D/g, '').slice(0, 8);
+                    if (v.length > 4) v = v.slice(0, 2) + '/' + v.slice(2, 4) + '/' + v.slice(4);
+                    else if (v.length > 2) v = v.slice(0, 2) + '/' + v.slice(2);
+                    setForm({ ...form, date: v });
+                  }} required placeholder="DD/MM/AAAA" style={inputStyle} onFocus={(e) => e.target.style.borderColor = 'var(--rose-primary)'} onBlur={(e) => e.target.style.borderColor = 'var(--rose-light)'} />
                 </div>
                 <div>
                   <label style={{ display: 'block', marginBottom: 6, color: 'var(--text-dark)', fontWeight: 500, fontSize: '0.9rem' }}>Horário *</label>
