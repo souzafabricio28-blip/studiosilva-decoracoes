@@ -97,6 +97,27 @@ export default function Services() {
               >
                 Solicitar Orçamento
               </a>
+              {service.title === 'Pegue e Monte' && (
+                <a
+                  href="/contrato-pegue-monte.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-block',
+                    padding: '8px 24px',
+                    borderRadius: 50,
+                    background: 'transparent',
+                    border: '2px solid var(--rose-primary)',
+                    color: index === 0 ? 'var(--white)' : 'var(--rose-primary)',
+                    fontWeight: 500,
+                    fontSize: '0.85rem',
+                    transition: 'all 0.3s',
+                    marginTop: 8,
+                  }}
+                >
+                  Ver Contrato
+                </a>
+              )}
             </div>
           ))}
         </div>
