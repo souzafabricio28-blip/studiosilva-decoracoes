@@ -79,25 +79,13 @@ export default function Gallery() {
           ))}
         </div>
 
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <tbody>
-            {filtered.reduce((rows, item, idx) => {
-              if (idx % 3 === 0) rows.push([]);
-              rows[rows.length - 1].push(item);
-              return rows;
-            }, []).map((row, ri) => (
-              <tr key={ri}>
-                {row.map((item, ci) => (
-                  <td key={item.id} style={{ padding: 8, verticalAlign: 'top' }}
-                      onClick={() => setOpen(ri * 3 + ci)}>
-                    <img src={item.image} alt={item.title} style={{ width: '100%', aspectRatio: '600/800', objectFit: 'cover', borderRadius: 8 }} />
-                  </td>
-                ))}
-                {row.length < 3 && Array.from({ length: 3 - row.length }).map((_, ei) => <td key={`e${ei}`} style={{ padding: 8 }}></td>)}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16 }}>
+          {filtered.map((item, idx) => (
+            <div key={item.id} onClick={() => setOpen(idx)} style={{ cursor: 'pointer' }}>
+              <img src={item.image} alt={item.title} style={{ width: '100%', aspectRatio: '600/800', objectFit: 'cover', borderRadius: 8 }} />
+            </div>
+          ))}
+        </div>
       </div>
 
       {item && (
