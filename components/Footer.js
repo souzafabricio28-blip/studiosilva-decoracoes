@@ -33,6 +33,10 @@ export default function Footer() {
             <p style={{ color: 'rgba(255,248,245,0.7)', fontSize: '0.9rem', lineHeight: 1.7, maxWidth: 280 }}>
               A vida é mais feliz com festa! 🎉 Decorações em balões para todos os tipos de evento.
             </p>
+            <p style={{ color: 'rgba(255,248,245,0.5)', fontSize: '0.85rem', lineHeight: 1.6, marginTop: 16 }}>
+              Rua dos Sonetos, 26 - Jardim Nova Vida<br />
+              Cotia - SP
+            </p>
           </div>
 
           <div>

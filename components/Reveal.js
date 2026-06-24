@@ -6,7 +6,7 @@ export default function Reveal({ children, delay = 0 }) {
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el) { setVisible(true); return; }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -17,6 +17,7 @@ export default function Reveal({ children, delay = 0 }) {
       { threshold: 0.15 }
     );
     observer.observe(el);
+    setTimeout(() => setVisible(true), 2000);
     return () => observer.disconnect();
   }, [delay]);
 
