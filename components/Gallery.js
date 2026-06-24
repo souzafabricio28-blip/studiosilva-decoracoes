@@ -4,23 +4,22 @@ const categories = [
   { id: 'all', label: 'Todas' },
   { id: 'kits', label: 'Kits' },
   { id: 'baloes', label: 'Balões' },
+  { id: 'convites', label: 'Convites' },
   { id: 'decoracoes', label: 'Decorações' },
 ];
 
 const kitNames = ['Luxo', 'Ouro', 'Bronze', 'Prata', 'Especial', 'Premium'];
 const balloonNames = ['Simples', 'Espiral', 'Desconstruído', 'Encapsulado', 'Colorido', 'Arco 2m', 'Arranjo', 'Personalizado'];
-const decorNames = ['Infantil', 'Casamento', '15 Anos', 'Temática', 'Especial', 'Chá de Lingerie', 'Chá de Bebê', 'Aniversário', 'Formatura', 'Corporativo', 'Luxo', 'Personalizada'];
+const decorNames = ['Casamento', '15 Anos', 'Temática', 'Especial', 'Chá de Lingerie', 'Chá de Bebê', 'Aniversário', 'Formatura', 'Corporativo', 'Luxo', 'Personalizada'];
 
-const galleryItems = Array.from({ length: 26 }, (_, i) => ({
-  id: i + 1,
-  image: `/images/gallery-${i + 1}.jpg`,
-  category: i < 6 ? 'kits' : i < 14 ? 'baloes' : 'decoracoes',
-  title: i < 6
-    ? `Kit ${kitNames[i]}`
-    : i < 14
-    ? `Balões ${balloonNames[i - 6]}`
-    : `Decoração ${decorNames[i - 14]}`,
-}));
+const galleryItems = Array.from({ length: 26 }, (_, i) => {
+  let category, title;
+  if (i < 6) { category = 'kits'; title = `Kit ${kitNames[i]}`; }
+  else if (i < 14) { category = 'baloes'; title = `Balões ${balloonNames[i - 6]}`; }
+  else if (i === 14) { category = 'convites'; title = 'Convite Personalizado'; }
+  else { category = 'decoracoes'; title = `Decoração ${decorNames[i - 15]}`; }
+  return { id: i + 1, image: `/images/gallery-${i + 1}.jpg`, category, title };
+});
 
 export default function Gallery() {
   const [active, setActive] = useState('all');
@@ -91,7 +90,7 @@ export default function Gallery() {
                 {row.map((item, ci) => (
                   <td key={item.id} style={{ padding: 8, verticalAlign: 'top' }}
                       onClick={() => setOpen(ri * 3 + ci)}>
-                    <img src={item.image} alt={item.title} style={{ width: '100%' }} />
+                    <img src={item.image} alt={item.title} style={{ width: '100%', aspectRatio: '600/800', objectFit: 'cover', borderRadius: 8 }} />
                   </td>
                 ))}
                 {row.length < 3 && Array.from({ length: 3 - row.length }).map((_, ei) => <td key={`e${ei}`} style={{ padding: 8 }}></td>)}
